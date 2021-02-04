@@ -1,0 +1,17 @@
+name: Dockerized Test Workflow
+
+on: [push]
+
+jobs:
+  build:
+    name: test-code
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    container: continuumio/anaconda3:2020.11
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v2
+      - name: Test code in Docker container	    
+        run: |
+          pip install tabulate
+          pytest --verbose test_mypytable.py
