@@ -154,7 +154,7 @@ class MyPyTable:
 
         return self 
 
-    def save_to_file(self, filename):
+    def save_to_file2(self, filename):
         """Save column names and data to a CSV file.
 
         Args:
@@ -164,6 +164,21 @@ class MyPyTable:
             Use the csv module.
         """
         with open("./output_data/" + filename, 'w') as csv_file:
+            csv_write = csv.writer(csv_file)
+            csv_write.writerow(self.column_names)
+            csv_write.writerows(self.data)
+        pass
+
+    def save_to_file(self, filename):
+        """Save column names and data to a CSV file.
+
+        Args:
+            filename(str): relative path for the CSV file to save the contents to.
+
+        Notes:
+            Use the csv module.
+        """
+        with open(filename, 'w') as csv_file:
             csv_write = csv.writer(csv_file)
             csv_write.writerow(self.column_names)
             csv_write.writerows(self.data)
